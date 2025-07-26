@@ -1,0 +1,109 @@
+.login-popup{
+    position: absolute;
+    z-index: 1000;
+    width: 100%;
+    height: 100%;
+    background-color: #00000090;
+    display: grid;
+}
+.login-popup-container{
+    place-self: center;
+    width: max(23vw,330px);
+    color: #bfa14a;
+    background-color: #10241b;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    padding: 25px 30px;
+    border-radius: 8px;
+    font-size: 14px;
+    animation: fadeIn 0.5s;
+    z-index: 1001;
+    border: 2px solid #bfa14a;
+    box-shadow: 0 0 16px #bfa14a22;
+}
+.login-popup-title{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #bfa14a;
+}
+.login-popup-title img{
+    width: 16px;
+    cursor: pointer;
+    transition: filter 0.2s;
+}
+.login-popup-title img:hover {
+    filter: brightness(0) saturate(100%) sepia(100%) hue-rotate(10deg) brightness(1.2);
+}
+.login-popup-title h2 {
+    color: #bfa14a;
+}
+.login-popup-inputs{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.login-popup-inputs input{
+    outline: none;
+    border: 1px solid #C9C9C9;
+    padding: 10px;
+    border-radius: 4px;
+    color: #bfa14a;
+}
+.login-popup-container button{
+    border: 2px solid #bfa14a;
+    padding: 10px;
+    border-radius: 4px;
+    color: #bfa14a;
+    background-color: #fff;
+    font-size: 15px;
+    cursor: pointer;
+    font-weight: 700;
+}
+.login-popup-container button:hover {
+    background: #bfa14a;
+    color: #fff;
+}
+.login-popup-condition{
+    display: flex;
+    align-items: start;
+    gap: 8px;
+    margin-top: -15px;
+    color: #bfa14a;
+}
+
+.login-popup-condition input{
+    margin-top: 5px;
+}
+
+
+.login-popup p span{
+    color: #FF4C24;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.login-tab {
+  background: none;
+  border: none;
+  color: #bfa14a;
+  font-size: 1.1em;
+  font-weight: 600;
+  padding: 6px 18px;
+  border-radius: 6px 6px 0 0;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.login-tab-active {
+  background: #fff;
+  color: #10241b;
+  border: 2px solid #bfa14a;
+  border-bottom: none;
+  font-weight: 700;
+  padding: 8px 20px 10px 20px;
+  border-radius: 8px 8px 0 0;
+  position: relative;
+  top: 2px;
+  z-index: 2;
+}

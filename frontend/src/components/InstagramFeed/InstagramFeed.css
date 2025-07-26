@@ -1,0 +1,21 @@
+.instagram-feed-container {
+  margin: 0 auto;
+  max-width: 900px;
+  text-align: center;
+}
+.instagram-feed-container h2 {
+  color: #bfa14a;
+  margin-bottom: 1.5rem;
+}
+.instagram-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+.instagram-grid img {
+  width: 100%;
+  border-radius: 10px;
+  object-fit: cover;
+  height: 100px;
+} 

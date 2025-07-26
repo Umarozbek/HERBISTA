@@ -1,0 +1,163 @@
+.gallery-container {
+  margin: 0 auto;
+  max-width: 900px;
+  text-align: center;
+}
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+.gallery-card {
+  background: #10241b;
+  border-radius: 18px;
+  box-shadow: 0 4px 24px #bfa14a22;
+  border: 2px solid #bfa14a;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.gallery-card:hover {
+  transform: translateY(-8px) scale(1.04);
+  box-shadow: 0 8px 32px #bfa14a55;
+}
+.gallery-img-wrapper {
+  position: relative;
+  width: 100%;
+  margin-bottom: 0.5rem;
+}
+.gallery-grid img {
+  width: 100%;
+  border-radius: 10px;
+  object-fit: cover;
+  height: 160px;
+}
+.gallery-meal-name {
+  color: #bfa14a;
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+.gallery-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+.gallery-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 50%;
+  transition: all 0.2s;
+  color: #bfa14a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 40px;
+  min-height: 40px;
+}
+.gallery-btn:hover {
+  transform: scale(1.2);
+  background-color: rgba(191, 161, 74, 0.1);
+}
+.gallery-btn.liked {
+  color: #ff4757;
+}
+.gallery-btn.saved {
+  color: #ffa502;
+}
+.gallery-btn.liked svg {
+  fill: #ff4757;
+}
+.gallery-btn.saved svg {
+  fill: #ffa502;
+}
+.gallery-container h2 {
+  color: #bfa14a;
+}
+
+@media (max-width: 900px) {
+  .gallery-container {
+    max-width: 95%;
+    padding: 0 1rem;
+  }
+  .gallery-grid {
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 0.8rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .gallery-container {
+    max-width: 98%;
+    padding: 0 0.5rem;
+  }
+  .gallery-grid {
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 0.6rem;
+  }
+  .gallery-card {
+    padding: 0.8rem;
+  }
+  .gallery-grid img {
+    height: 140px;
+  }
+  .gallery-meal-name {
+    font-size: 0.8rem;
+  }
+  .gallery-btn {
+    min-width: 35px;
+    min-height: 35px;
+    padding: 0.4rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .gallery-grid {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 0.5rem;
+  }
+  .gallery-card {
+    padding: 0.6rem;
+  }
+  .gallery-grid img {
+    height: 120px;
+  }
+  .gallery-meal-name {
+    font-size: 0.75rem;
+  }
+  .gallery-btn {
+    min-width: 30px;
+    min-height: 30px;
+    padding: 0.3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .gallery-container {
+    max-width: 100%;
+    padding: 0 0.3rem;
+  }
+  .gallery-grid {
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 0.4rem;
+  }
+  .gallery-card {
+    padding: 0.5rem;
+  }
+  .gallery-grid img {
+    height: 100px;
+  }
+  .gallery-meal-name {
+    font-size: 0.7rem;
+  }
+  .gallery-btn {
+    min-width: 25px;
+    min-height: 25px;
+    padding: 0.2rem;
+  }
+} 

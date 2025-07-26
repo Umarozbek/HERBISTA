@@ -1,0 +1,35 @@
+.common-events-container {
+  margin: 40px auto 0 auto;
+  text-align: center;
+  color: #bfa14a;
+}
+
+.events-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.event-card {
+  background: #bfa14a;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  padding: 1.5rem;
+  text-align: left;
+  color: #fff;
+}
+
+.event-card h3 {
+  margin: 0 0 0.5rem 0;
+  color: #fff;
+}
+
+.event-date {
+  color: #fff;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.common-events-container h2 {
+  color: #bfa14a;
+} 

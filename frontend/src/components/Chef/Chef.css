@@ -1,0 +1,29 @@
+.chef-container {
+  margin: 0 auto;
+  text-align: center;
+}
+.chef-profile {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+.chef-profile img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #e74c3c;
+}
+.chef-profile h3 {
+  margin: 0 0 0.5rem 0;
+  color: #bfa14a;
+}
+.chef-profile p {
+  margin: 0;
+  text-align: left;
+}
+.chef-container h2 {
+  color: #bfa14a;
+} 

@@ -1,0 +1,48 @@
+.stats-container {
+  margin: 40px auto 0 auto;
+  text-align: center;
+  color: #bfa14a;
+}
+.stats-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+.stat-card {
+  background: #10241b;
+  border-radius: 12px;
+  padding: 1.5rem 2rem;
+  width: 180px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #bfa14a;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.stat-card:hover {
+  transform: translateY(-8px) scale(1.04);
+  box-shadow: 0 8px 32px #bfa14a55;
+}
+.stat-value {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #bfa14a;
+  margin-bottom: 0.5rem;
+}
+.stat-label {
+  color: #bfa14a;
+}
+.stats-container h2 {
+  color: #bfa14a;
+}
+.stats-separator {
+  margin: 40px auto 0 auto;
+  border: none;
+  height: 3px;
+  width: 120px;
+  background: linear-gradient(90deg, #bfa14a 0%, #fff4e0 100%);
+  border-radius: 2px;
+} 

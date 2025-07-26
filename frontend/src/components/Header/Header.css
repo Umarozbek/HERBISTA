@@ -1,0 +1,167 @@
+.header{
+    width: 100vw;
+    height: 75vh;
+    margin: 0;
+    background: url('../../assets/rasm_resto.png') left center/cover no-repeat;
+    position: relative;
+    overflow: hidden;
+}
+
+.header-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.header::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(26, 53, 51, 0.5); /* dark overlay for readability */
+    z-index: 1;
+}
+
+.header-contents{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 1.5vw;
+    max-width: 60vw;
+    bottom: 10%;
+    left: 0;
+    padding-left: 4vw;
+    animation: fadeIn 3s;
+    z-index: 2;
+}
+.header-contents h2{
+    font-weight:700;
+    color: white;
+    font-size: max(4.5vw,22px);
+    text-shadow: 0 0 12px rgba(255, 255, 255, 0.5), 0 0 32px rgba(255, 255, 255, 0.3);
+}
+.header-contents p{
+    color: white;
+    font-size: 1vw;
+}
+.header-contents button{
+    border: none;
+    color: #fff;
+    font-weight: 700;
+    padding: 1vw 2.3vw;
+    background: #bfa14a;
+    font-size: max(1vw,13px);
+    border-radius: 50px;
+    transition: background 0.2s, color 0.2s;
+}
+.header-contents button:hover {
+    background: #fff;
+    color: #bfa14a;
+}
+@media (max-width: 1200px) {
+    .header-contents {
+        max-width: 70%;
+        padding-left: 3vw;
+    }
+    .header-contents h2 {
+        font-size: max(3.5vw, 20px);
+    }
+}
+
+@media (max-width: 1050px) {
+    .header {
+        height: 60vh;
+    }
+    .header-contents {
+        max-width: 60%;
+        padding-left: 2.5vw;
+        bottom: 15%;
+    }
+    .header-contents h2 {
+        font-size: max(3vw, 18px);
+    }
+    .header-contents p {
+        font-size: 1.2vw;
+    }
+}
+
+@media (max-width: 900px) {
+    .header {
+        height: 50vh;
+    }
+    .header-contents {
+        max-width: 70%;
+        padding-left: 2vw;
+        bottom: 20%;
+    }
+    .header-contents h2 {
+        font-size: max(2.8vw, 16px);
+    }
+    .header-contents button {
+        padding: 1.5vw 3vw;
+        font-size: max(0.9vw, 12px);
+    }
+}
+
+@media (max-width: 750px) {
+    .header {
+        height: 45vh;
+    }
+    .header-contents {
+        max-width: 80%;
+        padding-left: 1.5vw;
+        bottom: 25%;
+    }
+    .header-contents h2 {
+        font-size: max(2.5vw, 14px);
+    }
+    .header-contents p {
+        display: none;
+    }
+    .header-contents button {
+        padding: 2vw 4vw;
+        font-size: max(0.8vw, 11px);
+    }
+}
+
+@media (max-width: 600px) {
+    .header {
+        height: 40vh;
+    }
+    .header-contents {
+        max-width: 90%;
+        padding-left: 1vw;
+        bottom: 30%;
+        gap: 1vw;
+    }
+    .header-contents h2 {
+        font-size: max(2.2vw, 12px);
+    }
+    .header-contents button {
+        padding: 2.5vw 5vw;
+        font-size: max(0.7vw, 10px);
+    }
+}
+
+@media (max-width: 480px) {
+    .header {
+        height: 35vh;
+    }
+    .header-contents {
+        max-width: 95%;
+        padding-left: 0.5vw;
+        bottom: 35%;
+    }
+    .header-contents h2 {
+        font-size: max(2vw, 11px);
+    }
+    .header-contents button {
+        padding: 3vw 6vw;
+        font-size: max(0.6vw, 9px);
+    }
+}

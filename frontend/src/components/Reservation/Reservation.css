@@ -1,0 +1,178 @@
+.reservation-container {
+  margin: 0 auto;
+  text-align: center;
+  color: #fff;
+  background: #bfa14a;
+  border-radius: 16px;
+  padding: 2.5rem 1.5rem 2rem 1.5rem;
+  max-width: 800px;
+  box-shadow: 0 4px 24px #bfa14a22;
+}
+
+.reservation-subtitle {
+  color: #fff;
+  font-size: 1rem;
+  margin-bottom: 2rem;
+  opacity: 0.9;
+}
+
+.reservation-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.form-group.full-width {
+  grid-column: 1 / -1;
+}
+
+.form-group label {
+  color: #fff;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.reservation-form input,
+.reservation-form select,
+.reservation-form textarea {
+  padding: 0.75rem;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  font-size: 1rem;
+  color: #333;
+  background: rgba(255, 255, 255, 0.95);
+  transition: all 0.2s;
+}
+
+.reservation-form input:focus,
+.reservation-form select:focus,
+.reservation-form textarea:focus {
+  outline: none;
+  border-color: #fff;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3);
+}
+
+.reservation-form textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.submit-btn {
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  border: none;
+  background: #e74c3c;
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-top: 1rem;
+}
+
+.submit-btn:hover {
+  background: #c0392b;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(231, 76, 60, 0.4);
+}
+
+.reservation-container h2 {
+  color: #fff;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+@media (max-width: 900px) {
+  .reservation-container {
+    max-width: 90%;
+    padding: 2rem 1.5rem;
+  }
+  .reservation-container h2 {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+  
+  .reservation-container {
+    max-width: 95%;
+    padding: 2rem 1rem;
+  }
+  .reservation-container h2 {
+    font-size: 1.6rem;
+  }
+  .reservation-subtitle {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .reservation-container {
+    max-width: 98%;
+    padding: 1.5rem 0.8rem;
+  }
+  .reservation-container h2 {
+    font-size: 1.4rem;
+  }
+  .reservation-subtitle {
+    font-size: 0.8rem;
+  }
+  .form-group label {
+    font-size: 0.8rem;
+  }
+  .reservation-form input,
+  .reservation-form select,
+  .reservation-form textarea {
+    font-size: 0.9rem;
+    padding: 0.6rem;
+  }
+  .submit-btn {
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .reservation-container {
+    max-width: 100%;
+    padding: 1rem 0.5rem;
+    margin: 0 0.5rem;
+  }
+  .reservation-container h2 {
+    font-size: 1.2rem;
+  }
+  .reservation-subtitle {
+    font-size: 0.75rem;
+  }
+  .form-group label {
+    font-size: 0.75rem;
+  }
+  .reservation-form input,
+  .reservation-form select,
+  .reservation-form textarea {
+    font-size: 0.8rem;
+    padding: 0.5rem;
+  }
+  .submit-btn {
+    padding: 0.7rem 1.2rem;
+    font-size: 0.9rem;
+  }
+} 

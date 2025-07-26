@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Outfit', sans-serif;
+  scroll-behavior: smooth;
+}
+
+body, html {
+  background: #1A3533; /* dark green from provided image */
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  font-family: 'Open Sans', Arial, sans-serif;
+  color: #e0e0e0;
+}
+
+/* You can adjust the green shade as needed, e.g. #d4f5dd or #b2f2bb for different tones */
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Playfair Display', serif;
+  color: #fff;
+  letter-spacing: 0.5px;
+}
+
+a, .accent, .highlight {
+  color: #eab308; /* gold accent */
+  text-decoration: none;
+}
+
+.navbar-menu .active {
+  color: #eab308 !important;
+}
+
+button, input, select, textarea {
+  font-family: 'Open Sans', Arial, sans-serif;
+}
+
+.app {
+  width: 80%;
+  margin: auto;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@media (max-width:1050px) {
+  .app {
+    width: 90%;
+  }
+}
