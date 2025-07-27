@@ -24,26 +24,33 @@ const LoginPopup = ({ setShowLogin }) => {
     }
 
     const onLogin = async (e) => {
-        e.preventDefault()
-        let new_url = url;
+        e.preventDefault();
+
+        let new_url = "";
+
         if (currState === "Login") {
-            new_url += "http://localhost:5000/api/users/login";
+            new_url = "http://localhost:5000/api/users/login";
+        } else {
+            new_url = "http://localhost:5000/api/users";
         }
-        else {
-            new_url += "http://localhost:5000/api/users/register"
+
+        try {
+            const response = await axios.post(new_url, data);
+            console.log(response);
+            
+            if (response.data.success) {
+                setToken(response.data.token);
+                localStorage.setItem("token", response.data.token);
+                loadCartData({ token: response.data.token });
+                setShowLogin(false);
+            } else {
+                toast.error(response.data.message);
+            }
+        } catch (error) {
+            console.error("Login error:", error);
+            toast.error("Serverga ulanishda xatolik");
         }
-        const response = await axios.post(new_url, data);
-        if (response.data.success) {
-            setToken(response.data.token)
-            console.response;
-            localStorage.setItem("token", response.data.token)
-            loadCartData({ token: response.data.token })
-            setShowLogin(false)
-        }
-        else {
-            toast.error(response.data.message)
-        }
-    }
+    };
 
     return (
         <div className='login-popup'>

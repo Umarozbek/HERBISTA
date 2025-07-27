@@ -22,7 +22,7 @@ app.use('/api/reservations', reservationRoutes);
 app.use('/ap/gallery', galleryRoutes);
 app.use('/api/tables', tableRoutes);
 app.use('/uploads', express.static('uploads'));
-app.get('/', (req, res) => {
+app.get('/', (_, res) => {
   res.send('Welcome to Herbista API');
 });
 const PORT = process.env.PORT || 3000;
