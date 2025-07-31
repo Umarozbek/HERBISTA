@@ -8,7 +8,7 @@ import { toast } from 'react-toastify'
 
 const LoginPopup = ({ setShowLogin }) => {
     
-    const { setToken, url, loadCartData } = useContext(StoreContext)
+    // const { setToken, url, loadCartData } = useContext(StoreContext)
     const [currState, setCurrState] = useState("Sign Up");
     const [data, setData] = useState({
         name: "",
@@ -39,9 +39,9 @@ const LoginPopup = ({ setShowLogin }) => {
             console.log(response);
             
             if (response.data.success) {
-                setToken(response.data.token);
+                // setToken(response.data.token);
                 localStorage.setItem("token", response.data.token);
-                loadCartData({ token: response.data.token });
+                // loadCartData({ token: response.data.token });
                 setShowLogin(false);
             } else {
                 toast.error(response.data.message);

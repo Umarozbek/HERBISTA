@@ -27,7 +27,7 @@ exports.createUser = async (req, res) => {
     );
     await newUser.save();
 
-    const token = jwt.sign({ id: newUser._id }, SECRET_KEY, { expiresIn: "7d" });
+    const token = jwt.sign({ _id: newUser._id, role: newUser.role }, SECRET_KEY, { expiresIn: "30d" });
 
     res.status(201).json({
       success: true,
@@ -50,8 +50,8 @@ exports.loginUser = async (req, res) => {
       return res.status(400).json({ success: false, error: "Invalid email or password" });
     }
 
-    const token = jwt.sign({ id: user._id }, SECRET_KEY, { expiresIn: "7d" });
-
+   const token = jwt.sign({ _id: user._id, role: user.role }, SECRET_KEY, { expiresIn: "30d" });
+    console.log('loginUser success:', { userId: user._id, role: user.role });
     res.json({
       success: true,
       message: "Login successful",
@@ -116,3 +116,19 @@ exports.getMostBoughtUsers = async (req, res) => {
     res.status(500).json({ error: 'Failed to fetch most bought users' });
   }
 }; 
+
+exports.getme = async (req, res) => {
+  console.log('getme called');
+  try {
+    const user = await User.findById(req.userInfo.userId);
+    if (!user) {
+      console.log('getme not found');
+      return res.status(404).json({ error: 'User not found' });
+    }
+    console.log('getme success');
+    res.json({ data: user });
+  } catch (err) {
+    console.error('getme error:', err);
+    res.status(500).json({ error: 'Failed to fetch user' });
+  }
+}

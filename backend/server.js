@@ -19,7 +19,7 @@ app.use('/api/menu', menuRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/orders', orderRoutes);
 app.use('/api/reservations', reservationRoutes);
-app.use('/ap/gallery', galleryRoutes);
+app.use('/api/gallery', galleryRoutes);
 app.use('/api/tables', tableRoutes);
 app.use('/uploads', express.static('uploads'));
 app.get('/', (_, res) => {

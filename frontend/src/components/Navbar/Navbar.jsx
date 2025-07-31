@@ -3,11 +3,13 @@ import './Navbar.css'
 import { assets } from '../../assets/assets'
 import { Link, useNavigate } from 'react-router-dom'
 import { StoreContext } from '../../Context/StoreContext'
+import { useSelector } from 'react-redux'
 
 const Navbar = ({ setShowLogin }) => {
-
+const {data,isPending, isAuth} = useSelector((state) => state.user);
+console.log('data:', data);
   const [menu, setMenu] = useState("home");
-  const { getTotalCartAmount, token ,setToken } = useContext(StoreContext);
+  // const { getTotalCartAmount, token ,setToken } = useContext(StoreContext);
   const navigate = useNavigate();
   const [showSearch, setShowSearch] = useState(false);
   const searchRef = useRef();
@@ -58,9 +60,9 @@ const Navbar = ({ setShowLogin }) => {
         )}
         <Link to='/cart' className='navbar-search-icon'>
           <img src={assets.basket_icon} alt="" />
-          <div className={getTotalCartAmount() > 0 ? "dot" : ""}></div>
+          {/* <div className={getTotalCartAmount() > 0 ? "dot" : ""}></div> */}
         </Link>
-        {!token ? <button onClick={() => setShowLogin(true)}>sign in</button>
+        {!isAuth ? <button onClick={() => setShowLogin(true)}>sign in</button>
           : <div className='navbar-profile'>
             <img src={assets.profile_icon} alt="" />
             <ul className='navbar-profile-dropdown'>
