@@ -1,7 +1,6 @@
-import React, { useContext, useState } from 'react'
+import  {  useState } from 'react'
 import './LoginPopup.css'
 import { assets } from '../../assets/assets'
-import { StoreContext } from '../../Context/StoreContext'
 import axios from 'axios'
 import { toast } from 'react-toastify'
 
@@ -15,7 +14,6 @@ const LoginPopup = ({ setShowLogin }) => {
         email: "",
         password: ""
     })
-    console.log(url);
 
     const onChangeHandler = (event) => {
         const name = event.target.name
@@ -39,10 +37,9 @@ const LoginPopup = ({ setShowLogin }) => {
             console.log(response);
             
             if (response.data.success) {
-                // setToken(response.data.token);
                 localStorage.setItem("token", response.data.token);
-                // loadCartData({ token: response.data.token });
                 setShowLogin(false);
+                window.location.reload()
             } else {
                 toast.error(response.data.message);
             }

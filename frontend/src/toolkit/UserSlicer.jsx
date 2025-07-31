@@ -15,7 +15,7 @@ const UserSlicer = createSlice({
     },
     getUserSuccess(state, { payload }) {
       state.isAuth = true;
-      state.data = payload; // Populate user data on successful login
+      state.data = payload; 
       state.isPending = false;
     },
     getUserError(state, { payload }) {
