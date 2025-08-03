@@ -10,13 +10,14 @@ const {data,isPending, isAuth} = useSelector((state) => state.user);
   const navigate = useNavigate();
   const [showSearch, setShowSearch] = useState(false);
   const searchRef = useRef();
-  console.log(isAuth);
-  console.log(data);
+  // console.log(isAuth);
+  // console.log(data);
   
   const logout = () => {
     localStorage.removeItem("token");
-    navigate('/')
+    window.location.href = "/";
   }
+
 
   useEffect(() => {
     function handleClickOutside(event) {
