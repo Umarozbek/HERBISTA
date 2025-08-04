@@ -9,7 +9,7 @@ import Error from "./pages/Error";
 import { RootState } from "./store/RootStore";
 import { Fetch } from "./middlewares/Fetch";
 import Admins from "./pages/Admins";
-import Partners from "./pages/Partners";
+import Menu from "./pages/Menus";
 import Contacts from "./pages/Contacts";
 
 function App() {
@@ -52,7 +52,7 @@ function App() {
           children: [
             {
               path: "/",
-              element: <Partners/>,
+              element: <Menu/>,
               index: true,
             },
             {

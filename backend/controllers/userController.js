@@ -118,14 +118,11 @@ exports.getMostBoughtUsers = async (req, res) => {
 }; 
 
 exports.getme = async (req, res) => {
-  console.log('getme called');
   try {
     const user = await User.findById(req.userInfo.userId);
     if (!user) {
-      console.log('getme not found');
       return res.status(404).json({ error: 'User not found' });
     }
-    console.log('getme success');
     res.json({ data: user });
   } catch (err) {
     console.error('getme error:', err);

@@ -16,9 +16,9 @@ export interface MenusTypes {
   description: string;
   price: number
   category: string
+  image: string,
   __v: number;
   _id: string;
-  image: string,
   isAvailable: boolean
   isFeatured: boolean
 }

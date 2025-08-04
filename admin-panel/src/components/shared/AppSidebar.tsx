@@ -3,8 +3,8 @@ import {
   PanelLeftClose,
   LogOut,
   UserCog,
-  GalleryHorizontalEnd,
   MessageCircle,
+  SquareMenu,
 } from "lucide-react";
 
 import { Link } from "react-router-dom";
@@ -27,9 +27,9 @@ export function AppSidebar() {
 
   const items = [
     {
-      title: "Carousels",
+      title: "Menus",
       url: "/",
-      icon: GalleryHorizontalEnd,
+      icon: SquareMenu,
     },
     {
       title: "Contacts",
