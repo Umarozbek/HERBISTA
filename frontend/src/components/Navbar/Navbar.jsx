@@ -1,22 +1,23 @@
-import React, { useContext, useEffect, useState, useRef } from 'react'
+import  { useEffect, useState, useRef } from 'react'
 import './Navbar.css'
 import { assets } from '../../assets/assets'
 import { Link, useNavigate } from 'react-router-dom'
-import { StoreContext } from '../../Context/StoreContext'
-
+import { useSelector } from 'react-redux'
 const Navbar = ({ setShowLogin }) => {
+const {data,isPending, isAuth} = useSelector((state) => state.user);
 
   const [menu, setMenu] = useState("home");
-  const { getTotalCartAmount, token ,setToken } = useContext(StoreContext);
   const navigate = useNavigate();
   const [showSearch, setShowSearch] = useState(false);
   const searchRef = useRef();
-
+  // console.log(isAuth);
+  // console.log(data);
+  
   const logout = () => {
     localStorage.removeItem("token");
-    setToken("");
-    navigate('/')
+    window.location.href = "/";
   }
+
 
   useEffect(() => {
     function handleClickOutside(event) {
@@ -58,9 +59,9 @@ const Navbar = ({ setShowLogin }) => {
         )}
         <Link to='/cart' className='navbar-search-icon'>
           <img src={assets.basket_icon} alt="" />
-          <div className={getTotalCartAmount() > 0 ? "dot" : ""}></div>
+          {/* <div className={getTotalCartAmount() > 0 ? "dot" : ""}></div> */}
         </Link>
-        {!token ? <button onClick={() => setShowLogin(true)}>sign in</button>
+        {!isAuth ? <button disabled={isPending}  onClick={() => setShowLogin(true)}>{isPending ? "Loading..." : "Sign in"}</button>
           : <div className='navbar-profile'>
             <img src={assets.profile_icon} alt="" />
             <ul className='navbar-profile-dropdown'>

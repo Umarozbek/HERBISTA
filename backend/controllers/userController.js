@@ -1,6 +1,9 @@
 const User = require('../models/User');
-
-exports.getAllUsers = async (req, res) => {
+const dotenv = require('dotenv')
+const jwt = require("jsonwebtoken")
+dotenv.config()
+const SECRET_KEY = process.env.JWT_SECRET || "SECRET_KEY"
+exports.getAllUsers = async (_, res) => {
   console.log('getAllUsers called');
   try {
     const users = await User.find();
@@ -13,19 +16,54 @@ exports.getAllUsers = async (req, res) => {
 };
 
 exports.createUser = async (req, res) => {
-  console.log('createUser called');
   try {
-    const newUser = new User(req.body);
-    console.log(req.body);
-    console.log(newUser);
+    const {name, email,password}= req.body
+    const user = await User.findOne({email})
+    if (user) {
+      return res.status(400).json({ success: false, error: "Your email already registered" });
+    }
+    const newUser = new User(
+      {name,email,password}
+    );
     await newUser.save();
-    console.log('createUser success');
-    res.status(201).json({ data: newUser });
+
+    const token = jwt.sign({ _id: newUser._id, role: newUser.role }, SECRET_KEY, { expiresIn: "30d" });
+
+    res.status(201).json({
+      success: true,
+      message: "User created successfully",
+      token,
+      user: newUser,
+    });
   } catch (err) {
-    console.error('createUser error:', err);
-    res.status(400).json({ error: 'Failed to create user' });
+    console.error("createUser error:", err);
+    res.status(400).json({ success: false, error: "Failed to create user" });
   }
 };
+
+exports.loginUser = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    const user = await User.findOne({ email });
+
+    if (!user || user.password !== password) {
+      return res.status(400).json({ success: false, error: "Invalid email or password" });
+    }
+
+   const token = jwt.sign({ _id: user._id, role: user.role }, SECRET_KEY, { expiresIn: "30d" });
+    console.log('loginUser success:', { userId: user._id, role: user.role });
+    res.json({
+      success: true,
+      message: "Login successful",
+      token,
+      user,
+    });
+  } catch (err) {
+    console.error("loginUser error:", err);
+    res.status(400).json({ success: false, error: "Failed to login user" });
+  }
+};
+
 
 exports.updateUser = async (req, res) => {
   console.log('updateUser called');
@@ -78,3 +116,16 @@ exports.getMostBoughtUsers = async (req, res) => {
     res.status(500).json({ error: 'Failed to fetch most bought users' });
   }
 }; 
+
+exports.getme = async (req, res) => {
+  try {
+    const user = await User.findById(req.userInfo.userId);
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+    res.json({ data: user });
+  } catch (err) {
+    console.error('getme error:', err);
+    res.status(500).json({ error: 'Failed to fetch user' });
+  }
+}

@@ -1,6 +1,6 @@
 const Menu = require('../models/Menu');
 
-exports.getAllMenuItems = async (req, res) => {
+exports.getAllMenuItems = async (_, res) => {
   try {
     const items = await Menu.find();
     res.json({ data: items });
@@ -11,7 +11,17 @@ exports.getAllMenuItems = async (req, res) => {
 
 exports.createMenuItem = async (req, res) => {
   try {
-    const newItem = new Menu(req.body);
+    const {name, description,price, category} = req.body   
+   
+    const newItem = new Menu(
+      {
+        name:name,  
+        description:description,
+        price:price,
+        category:category,
+        image:req.uploadedImage
+      }
+    );
     await newItem.save();
     res.status(201).json({ data: newItem });
   } catch (err) {

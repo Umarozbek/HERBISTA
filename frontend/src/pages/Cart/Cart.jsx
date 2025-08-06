@@ -4,18 +4,38 @@ import { StoreContext } from '../../Context/StoreContext'
 import { useNavigate } from 'react-router-dom';
 import LoginPopup from '../../components/LoginPopup/LoginPopup';
 
+import PaymentPopup from '../../pages/PaymentPopup/PaymentPopup';
+
 const Cart = () => {
   const {cartItems, food_list, removeFromCart,getTotalCartAmount,url,currency,deliveryCharge, token} = useContext(StoreContext);
   const navigate = useNavigate();
   const [showLogin, setShowLogin] = useState(false);
+  const [showPayment, setShowPayment] = useState(false); // Add this state
 
   const handleCheckout = () => {
     if (!token) {
       setShowLogin(true);
       return;
     }
-    navigate('/order');
+    setShowPayment(true); // Show payment popup instead of navigating
   };
+
+  const handleCheckout2 = () => {
+  if (!token) {
+    setShowLogin(true);
+    return;
+  }
+  navigate('/checkout'); // Navigate to the checkout page
+};
+
+  
+  // const cartcheckout = () => {
+  //   if (!token) {
+  //     setShowLogin(true);
+  //     return;
+  //   }
+  //   navigate('/checkout');
+  // }
 
   return (
     <div className='cart'>
@@ -51,7 +71,7 @@ const Cart = () => {
             <hr />
             <div className="cart-total-details"><b>Total</b><b>{currency}{getTotalCartAmount()===0?0:getTotalCartAmount()+deliveryCharge}</b></div>
           </div>
-          <button onClick={handleCheckout}>PROCEED TO CHECKOUT</button>
+          <button onClick={handleCheckout2}>PROCEED TO CHECKOUT</button>
         </div>
         <div className="cart-promocode">
           <div>
@@ -64,6 +84,7 @@ const Cart = () => {
         </div>
       </div>
       {showLogin && <LoginPopup setShowLogin={setShowLogin} />}
+      {showPayment && <PaymentPopup setShowPayment={setShowPayment} />}
     </div>
   )
 }
