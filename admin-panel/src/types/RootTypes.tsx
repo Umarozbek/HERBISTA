@@ -1,9 +1,8 @@
 
-export interface AdminTypes {
+export interface UserTypes {
   createdAt: string;
-  firstName: string;
-  lastName: string;
-  phoneNumber: string;
+  name: string;
+  email: string;
   role: string;
   updatedAt: string;
   __v: number;

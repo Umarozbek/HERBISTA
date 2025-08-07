@@ -1,7 +1,7 @@
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import { Sheet } from "@/components/ui/sheet"
 import { Fetch } from "@/middlewares/Fetch"
-import { AddMenu } from "@/modules/AddMenu"
+import { AddFood } from "@/modules/AddFood"
 import { MenusTypes } from "@/types/RootTypes"
 import { EllipsisVertical, Trash } from "lucide-react"
 import { useEffect, useState } from "react"
@@ -60,7 +60,7 @@ const Menu = () => {
     <div className="flex justify-between items-center mb-4 gap-3 flex-wrap">
       <h1 className="text-2xl font-bold">Menus</h1>
       <Sheet>
-        <AddMenu />
+        <AddFood />
       </Sheet>
     </div>
 

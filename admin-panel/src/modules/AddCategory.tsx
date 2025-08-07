@@ -14,7 +14,8 @@ import {
 import { Fetch } from "@/middlewares/Fetch";
 import { toast } from "sonner";
 
-export function AddMenu() {
+
+export function AddCategory() {
   const [formData, setFormData] = useState<{
     name: string;
     description: string;

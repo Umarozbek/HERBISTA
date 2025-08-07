@@ -2,9 +2,9 @@ import {
   PanelLeftOpen,
   PanelLeftClose,
   LogOut,
-  UserCog,
   MessageCircle,
   SquareMenu,
+  Users,
 } from "lucide-react";
 
 import { Link } from "react-router-dom";
@@ -37,9 +37,9 @@ export function AppSidebar() {
       icon: MessageCircle,
     },
     {
-      title: "Admins",
-      url: "/admins",
-      icon: UserCog,
+      title: "Users",
+      url: "/users",
+      icon: Users,
     },
     
   ];

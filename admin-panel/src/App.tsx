@@ -8,7 +8,7 @@ import Login from "./pages/Login";
 import Error from "./pages/Error";
 import { RootState } from "./store/RootStore";
 import { Fetch } from "./middlewares/Fetch";
-import Admins from "./pages/Admins";
+import Users from "./pages/Users";
 import Menu from "./pages/Menus";
 import Contacts from "./pages/Contacts";
 
@@ -56,13 +56,10 @@ function App() {
               index: true,
             },
             {
-              path: "/admins",
-              element: <Admins />,
+              path: "/users",
+              element: <Users />,
             },
-            {
-              path: "/admins",
-              element: <Admins />,
-            },
+            
             {
               path:"/contacts",
               element:<Contacts/>
