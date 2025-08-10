@@ -155,7 +155,7 @@ console.log(categories);
               value={formData.category}
               onValueChange={(value) => setFormData((prev) => ({ ...prev, category: value }))}
             >
-              <SelectTrigger className="w-full bg-gray-800 text-white">
+              <SelectTrigger className="w-full ">
                 <SelectValue placeholder="Select a category" />
               </SelectTrigger>
               <SelectContent>
