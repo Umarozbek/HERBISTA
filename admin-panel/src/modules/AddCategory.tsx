@@ -18,16 +18,14 @@ import { toast } from "sonner";
 export function AddCategory() {
   const [formData, setFormData] = useState<{
     name: string;
-    description: string;
     image: File | null;
-    category: string;
-    price: number;
+
   }>({
     name: "",
-    description: "",
+  
     image: null,
-    category: "",
-    price: 0,
+   
+  
   });
 
   const [isLoading, setIsLoading] = useState(false);
@@ -45,10 +43,8 @@ export function AddCategory() {
   const resetForm = () => {
     setFormData({
       name: "",
-      description: "",
       image: null,
-      category: "",
-      price: 0,
+   
     });
   };
 
@@ -58,20 +54,16 @@ export function AddCategory() {
     try {
       const formDataToSend = new FormData();
       formDataToSend.append("name", formData.name);
-      formDataToSend.append("description", formData.description);
-      formDataToSend.append("category", formData.category);
-      formDataToSend.append("price", String(formData.price));
-
       if (formData.image) {
         formDataToSend.append("image", formData.image);
       }
 
       console.log(formData);
-      await Fetch.post("menu", formDataToSend, {
+      await Fetch.post("categories", formDataToSend, {
         headers: { "Content-Type": "multipart/form-data" },
       });
       
-      toast("Menu created successfully");
+      toast("Categories created successfully");
       resetForm();
       setIsSheetOpen(false);
       window.location.reload();
@@ -106,39 +98,6 @@ export function AddCategory() {
               type="text"
               placeholder="Name"
               onChange={handleInputChange}
-            />
-          </div>
-
-          <div className="space-y-1">
-            <Label htmlFor="description">Description <span className="text-blue-500">*</span></Label>
-            <Input
-              name="description"
-              value={formData.description}
-              onChange={handleInputChange}
-              type="text"
-              placeholder="Description"
-            />
-          </div>
-
-          <div className="space-y-1">
-            <Label htmlFor="category">Category <span className="text-blue-500">*</span></Label>
-            <Input
-              name="category"
-              value={formData.category}
-              onChange={handleInputChange}
-              type="text"
-              placeholder="Category"
-            />
-          </div>
-
-          <div className="space-y-1">
-            <Label htmlFor="price">Price ($) <span className="text-blue-500">*</span></Label>
-            <Input
-              name="price"
-              value={formData.price}
-              onChange={(e) => setFormData({ ...formData, price: +e.target.value })}
-              type="number"
-              placeholder="0"
             />
           </div>
 

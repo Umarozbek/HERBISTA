@@ -21,6 +21,14 @@ export interface MenusTypes {
   isAvailable: boolean
   isFeatured: boolean
 }
+export interface CategoryTypes {
+  createdAt: string;
+  name: string;
+  image: string;
+  updatedAt: string;
+  __v: number;
+  _id: string;
+}
 
 export interface ContactTypes {
   createdAt: string;

@@ -8,7 +8,12 @@ exports.getOne = async (req, res) => {
   res.json({ data: category });
 };
 exports.create = async (req, res) => {
-  const category = new Category(req.body);
+  const { name  } = req.body;
+  console.log(req.body);
+  const category = new Category({
+    name,
+    image: req.uploadedImage 
+  }); 
   await category.save();
   res.status(201).json({ data: category });
 };

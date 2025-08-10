@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -13,10 +13,19 @@ import {
 } from "@/components/ui/sheet";
 import { Fetch } from "@/middlewares/Fetch";
 import { toast } from "sonner";
+import { CategoryTypes } from "@/types/RootTypes";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
-//addCategory("admin-panel");
-//
 export function AddFood() {
+  const [categories, setCategories] = useState<CategoryTypes[]>([]);
+  const [loading, setLoading] = useState(false);
+console.log(categories);
   const [formData, setFormData] = useState<{
     name: string;
     description: string;
@@ -33,6 +42,21 @@ export function AddFood() {
 
   const [isLoading, setIsLoading] = useState(false);
   const [isSheetOpen, setIsSheetOpen] = useState(false);
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        setLoading(true);
+        const response = await Fetch.get("categories");
+        setCategories(response.data.data);
+      } catch (error) {
+        console.error("Failed to fetch categories:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchCategories();
+  }, []);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, files } = e.target;
@@ -67,11 +91,10 @@ export function AddFood() {
         formDataToSend.append("image", formData.image);
       }
 
-      console.log(formData);
       await Fetch.post("menu", formDataToSend, {
         headers: { "Content-Type": "multipart/form-data" },
       });
-      
+
       toast("Menu created successfully");
       resetForm();
       setIsSheetOpen(false);
@@ -83,6 +106,10 @@ export function AddFood() {
       setIsLoading(false);
     }
   };
+
+  if (loading) {
+    return <h1>Loading...</h1>;
+  }
 
   return (
     <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
@@ -120,16 +147,34 @@ export function AddFood() {
               placeholder="Description"
             />
           </div>
+          
 
           <div className="space-y-1">
             <Label htmlFor="category">Category <span className="text-blue-500">*</span></Label>
-            <Input
-              name="category"
+            <Select
               value={formData.category}
-              onChange={handleInputChange}
-              type="text"
-              placeholder="Category"
-            />
+              onValueChange={(value) => setFormData((prev) => ({ ...prev, category: value }))}
+            >
+              <SelectTrigger className="w-full bg-gray-800 text-white">
+                <SelectValue placeholder="Select a category" />
+              </SelectTrigger>
+              <SelectContent>
+                {categories?.map((category) => (
+                  <SelectItem key={category._id} value={category.name}>
+                    <div className="flex items-center gap-2">
+                      {category.image && (
+                        <img
+                          src={category.image}
+                          alt={category.name}
+                          className="w-6 h-6 rounded object-cover"
+                        />
+                      )}
+                      <span>{category.name}</span>
+                    </div>
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
           </div>
 
           <div className="space-y-1">
@@ -167,3 +212,4 @@ export function AddFood() {
     </Sheet>
   );
 }
+

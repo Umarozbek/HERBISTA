@@ -5,14 +5,42 @@ import { use } from 'react'
 import { Fetch } from '../../middleware/Axios'
 import { useEffect, useState } from 'react'
 
-const ExploreMenu = ({category,setCategory}) => {
+const ExploreMenu  = () => {
 
-  
-  const [ menu_list, setMenuList] = useState([])
+
+      const [ foods, setFoods] = useState([])
+      const [ selectedCategory, setSelectedCategory] = useState("");
+      console.log(selectedCategory);
+      const [ filteredFoods, setFilteredFoods] = useState([]);
   useEffect(() => {
     const fetchMenuList = async () => {
       try {
         const response = await Fetch.get('menu'); // Adjust the endpoint as needed
+        
+       console.log(response.data.data);
+        setFoods(response.data.data);
+      } catch (error) {
+        console.error('Error fetching menu list:', error);
+      }
+    };
+
+    
+
+    fetchMenuList();
+  }, []);
+    const handleSelectCategory = (category) => {
+      setSelectedCategory(category);
+      console.log(`Selected category: ${category}`);
+      const filtered = foods.filter((food) => food.category === category);
+      setFilteredFoods(filtered);
+      console.log("filteredFoods", filteredFoods);
+
+    }
+  const [ menu_list, setMenuList] = useState([])
+  useEffect(() => {
+    const fetchMenuList = async () => {
+      try {
+        const response = await Fetch.get('categories'); // Adjust the endpoint as needed
        console.log(response.data.data);
         setMenuList(response.data.data);
       } catch (error) {
@@ -29,9 +57,9 @@ const ExploreMenu = ({category,setCategory}) => {
       <div className="explore-menu-list">
         {menu_list.map((item,index)=>{
             return (
-                <div onClick={()=>setCategory(prev=>prev===item.menu_name?"All":item.menu_name)} key={index} className='explore-menu-list-item'>
-                    <img src={item.image} className={category===item.menu_name?"active":""} alt="" />
-                    <p>{item.menu_name}</p>
+                <div onClick={()=>handleSelectCategory(item.name) } key={index} className='explore-menu-list-item'>
+                      <img src={item.image} className={selectedCategory===item.name?"active":""} alt="" />
+                    <p>{item.name}</p>
                 </div>
             )
         })}

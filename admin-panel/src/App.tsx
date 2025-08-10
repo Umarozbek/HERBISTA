@@ -11,6 +11,7 @@ import { Fetch } from "./middlewares/Fetch";
 import Users from "./pages/Users";
 import Menu from "./pages/Menus";
 import Contacts from "./pages/Contacts";
+import Categories from "./pages/Categories";
 
 function App() {
   const { isPending, isAuth } = useSelector((state: RootState) => state.user);
@@ -54,6 +55,11 @@ function App() {
               path: "/",
               element: <Menu/>,
               index: true,
+            },
+            {
+              path: "/categories",
+              element: <Categories />,
+              
             },
             {
               path: "/users",

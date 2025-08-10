@@ -5,6 +5,7 @@ import {
   MessageCircle,
   SquareMenu,
   Users,
+  CopyPlus,
 } from "lucide-react";
 
 import { Link } from "react-router-dom";
@@ -30,6 +31,11 @@ export function AppSidebar() {
       title: "Menus",
       url: "/",
       icon: SquareMenu,
+    },
+     {
+      title: "Categories",
+      url: "/categories",
+      icon: CopyPlus,
     },
     {
       title: "Contacts",

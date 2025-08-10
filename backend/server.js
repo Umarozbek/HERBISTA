@@ -21,6 +21,7 @@ app.use('/api/orders', orderRoutes);
 app.use('/api/reservations', reservationRoutes);
 app.use('/api/gallery', galleryRoutes);
 app.use('/api/tables', tableRoutes);
+app.use('/api/categories', require('./routes/categories')); // Add categories route
 app.use('/uploads', express.static('uploads'));
 app.get('/', (_, res) => {
   res.send('Welcome to Herbista API');
