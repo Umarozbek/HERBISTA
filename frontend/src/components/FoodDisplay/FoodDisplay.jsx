@@ -1,22 +1,36 @@
 import React, { useContext } from 'react'
 import './FoodDisplay.css'
 import FoodItem from '../FoodItem/FoodItem'
-import { StoreContext } from '../../Context/StoreContext'
+import { Fetch } from '../../middleware/Axios'
+import { useEffect, useState } from 'react'
 
 const FoodDisplay = ({category}) => {
+const [ foods, setFoods] = useState([])
+  
+    useEffect(() => {
+      const fetchMenuList = async () => {
+        try {
+          const response = await Fetch.get('menu'); 
+          setFoods(response.data.data);
+        } catch (error) {
+          console.error('Error fetching menu list:', error);
+        }
+      };
+      fetchMenuList();
+    }, []);
 
-  // const {food_list} = useContext(StoreContext);
+
 
   return (
     <div className='food-display' id='food-display'>
       <h2>Top dishes near you</h2>
-      {/* <div className='food-display-list'>
-        {food_list.map((item)=>{
+      <div className='food-display-list'>
+        {foods.map((item)=>{
           if (category==="All" || category===item.category) {
             return <FoodItem key={item._id} image={item.image} name={item.name} desc={item.description} price={item.price} id={item._id}/>
           }
-        })} */}
-      {/* </div> */}
+        })} 
+       </div>
     </div>
   )
 }

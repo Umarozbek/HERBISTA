@@ -21,6 +21,8 @@ const ExploreMenu  = () => {
     fetchMenuList();
   }, []);
 
+  
+
   useEffect(() => {
     const fetchMenuList = async () => {
       try {
