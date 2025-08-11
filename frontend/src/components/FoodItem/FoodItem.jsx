@@ -1,33 +1,44 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import './FoodItem.css';
 import { assets } from '../../assets/assets';
 
-const FoodItem = ({ image, name, price, desc, id, index }) => {
+const FoodItem = ({ image, name, price, desc, id }) => {
   const [itemCount, setItemCount] = useState(0);
 
-  // Add item to cart (push into array)
   const addToCart = () => {
-    const existingCart = JSON.parse(localStorage.getItem('cartItems')) || [];
-    existingCart.push({ id, name, image, price });
-    localStorage.setItem('cartItems', JSON.stringify(existingCart));
-    setItemCount(itemCount + 1);
-  };
-
-  // Remove item by index
-  const removeFromCart = (removeIndex) => {
-    let existingCart = JSON.parse(localStorage.getItem('cartItems')) || [];
-    existingCart.splice(removeIndex, 1); // remove item at given index
-    localStorage.setItem('cartItems', JSON.stringify(existingCart));
-    setItemCount(0);
-  };
-
-  // On mount, check if item exists in cart and set count
-  useEffect(() => {
-    const cart = JSON.parse(localStorage.getItem('cartItems')) || [];
+    let cart = JSON.parse(localStorage.getItem('cartItems')) || [];
     const foundIndex = cart.findIndex(item => item.id === id);
     if (foundIndex !== -1) {
-      setItemCount(1); // could be quantity tracking here if needed
+      cart[foundIndex].quantity += 1;
+      setItemCount(cart[foundIndex].quantity);
+    } else {
+      cart.push({ id, name, image, price, quantity: 1 });
+      setItemCount(1);
     }
+    // bu yerda quantity ni berib yubordim
+    localStorage.setItem('cartItems', JSON.stringify(cart));
+  };
+
+  const removeFromCart = () => {
+    let cart = JSON.parse(localStorage.getItem('cartItems')) || [];
+    const foundIndex = cart.findIndex(item => item.id === id);
+    if (foundIndex !== -1) {
+      if (cart[foundIndex].quantity > 1) {
+        cart[foundIndex].quantity -= 1;
+        setItemCount(cart[foundIndex].quantity);
+      } else {
+        cart.splice(foundIndex, 1);
+        setItemCount(0);
+      }
+      // bu yerda shu quantity dan ayriydi, masalan - ni bossez 7 dan 6 ga, agar 0 bo'lsa o'chiradi
+      localStorage.setItem('cartItems', JSON.stringify(cart));
+    }
+  };
+
+  useEffect(() => {
+    const cart = JSON.parse(localStorage.getItem('cartItems')) || [];
+    const found = cart.find(item => item.id === id);
+    setItemCount(found ? found.quantity : 0);
   }, [id]);
 
   return (
@@ -45,7 +56,7 @@ const FoodItem = ({ image, name, price, desc, id, index }) => {
           <div className="food-item-counter">
             <img 
               src={assets.remove_icon_red} 
-              onClick={() => removeFromCart(index)} 
+              onClick={removeFromCart} 
               alt="" 
             />
             <p>{itemCount}</p>

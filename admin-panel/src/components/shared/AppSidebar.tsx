@@ -6,6 +6,7 @@ import {
   SquareMenu,
   Users,
   CopyPlus,
+  ListOrdered,
 } from "lucide-react";
 
 import { Link } from "react-router-dom";
@@ -36,6 +37,11 @@ export function AppSidebar() {
       title: "Categories",
       url: "/categories",
       icon: CopyPlus,
+    },
+    {
+      title: "Orders",
+      url: "/orders",
+      icon: ListOrdered,
     },
     {
       title: "Contacts",

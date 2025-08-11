@@ -18,6 +18,7 @@ export interface MenusTypes {
   image: string,
   __v: number;
   _id: string;
+  quantity: number;
   isAvailable: boolean
   isFeatured: boolean
 }
@@ -41,12 +42,11 @@ export interface ContactTypes {
 }
 
 
-export interface CarouselTypes {
+export interface OrderTypes {
   createdAt: string;
-  title: string;
-  description: string;
-  images: string[];
-  link: string;
+  user: UserTypes;
+  items: MenusTypes[];
+  total: number;
   updatedAt: string;
   __v: number;
   _id: string;

@@ -1,4 +1,3 @@
-import React, { useContext } from 'react'
 import './FoodDisplay.css'
 import FoodItem from '../FoodItem/FoodItem'
 import { Fetch } from '../../middleware/Axios'

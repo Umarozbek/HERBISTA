@@ -12,6 +12,7 @@ import Users from "./pages/Users";
 import Menu from "./pages/Menus";
 import Contacts from "./pages/Contacts";
 import Categories from "./pages/Categories";
+import Orders from "./pages/Orders";
 
 function App() {
   const { isPending, isAuth } = useSelector((state: RootState) => state.user);
@@ -65,7 +66,10 @@ function App() {
               path: "/users",
               element: <Users />,
             },
-            
+            {
+              path: "/orders",
+              element: <Orders />,
+            },
             {
               path:"/contacts",
               element:<Contacts/>
