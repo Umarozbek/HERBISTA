@@ -13,9 +13,8 @@ import Stats from '../../components/Stats/Stats'
 import InstagramFeed from '../../components/InstagramFeed/InstagramFeed'
 
 const Home = () => {
-
   const [category,setCategory] = useState("All")
-
+  
   return (
     <>
       <Header/>
