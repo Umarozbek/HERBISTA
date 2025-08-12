@@ -1,30 +1,41 @@
-import React, { useContext, useEffect, useState } from 'react'
+import {  useEffect, useState } from 'react'
 import './MyOrders.css'
-import axios from 'axios'
-import { StoreContext } from '../../Context/StoreContext';
 import { assets } from '../../assets/assets';
-
+import { Fetch } from '../../middleware/Axios';
+import { useSelector } from 'react-redux';
 const MyOrders = () => {
-  
-  const [data,setData] =  useState([]);
-  const {url,token,currency} = useContext(StoreContext);
 
-  const fetchOrders = async () => {
-    const response = await axios.post(url+"/api/order/userorders",{},{headers:{token}});
-    setData(response.data.data)
+  const [orders,setOrders] =  useState([]);
+  const [toggle,setToggle] =  useState(null);
+  const {data, isPending,isError} = useSelector((state) => state.user);
+  useEffect(() => {
+    const fetchOrders = async (e) => {
+      e.preventDefault();
+      try {
+         const response = await Fetch.get("orders");
+    setOrders(response.data.data)
+      } catch (error) {
+        console.error(error);
+      }
   }
+  fetchOrders();
+  }, [])
+  
+  const myOrders = orders.filter((order) => order.user._id === data._id);
 
-  useEffect(()=>{ 
-    if (token) {
-      fetchOrders();
+  if (isPending) {
+    return <div>Loading...</div>;
     }
-  },[token])
+
+  if (isError) {
+    return <div>Error: {isError}</div>;
+  }
 
   return (
     <div className='my-orders'>
       <h2>My Orders</h2>
       <div className="container">
-        {data.map((order,index)=>{
+        {myOrders.map((order,index)=>{
           return (
             <div key={index} className='my-orders-order'>
                 <img src={assets.parcel_icon} alt="" />
@@ -37,10 +48,25 @@ const MyOrders = () => {
                   }
                   
                 })}</p>
-                <p>{currency}{order.amount}.00</p>
+                <p>{order.total}.00</p>
                 <p>Items: {order.items.length}</p>
                 <p><span>&#x25cf;</span> <b>{order.status}</b></p>
-                <button onClick={fetchOrders}>Track Order</button>
+                {
+                  toggle === index ? <button onClick={() => setToggle(null)}>Hide Order</button> : <button onClick={() => setToggle(index)}>Track Order</button>
+                }
+                {
+                  toggle === index && <div>
+                    {order.items.map(
+                      (item, index) => (
+                        <div key={index} className='my-orders-order-item'>
+                          <p>{item.name}</p>
+                          <p>Quantity: {item.quantity}</p>
+                          <p>Price: {item.price}.00</p>
+                        </div>
+                      )
+                    )}
+                  </div>
+                }
             </div>
           )
         })}

@@ -16,6 +16,7 @@ exports.createReservation = async (req, res) => {
   console.log('createReservation called');
   try {
     const newReservation = new Reservation(req.body);
+
     await newReservation.save();
     console.log('createReservation success');
     res.status(201).json({ data: newReservation });

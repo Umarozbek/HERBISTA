@@ -30,6 +30,7 @@ const Orders = () => {
            {orders.map(({items,_id,total,createdAt,user}:OrderTypes) => (
                 <div key={_id} className="bg-[#202020] text-white rounded-lg p-4 flex flex-col gap-3 relative">
                     <h1 className="text-sm font-bold">Order #{_id}</h1>
+                    <Separator />
                     <p className="">User: {user.name}</p>
                     <p className="">Total Price: {total}$</p>
                       <Separator />

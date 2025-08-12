@@ -52,4 +52,18 @@ export interface OrderTypes {
   _id: string;
 }
 
-
+export interface ReservationTypes {
+  createdAt: string;
+  updatedAt: string;
+  items: MenusTypes[];
+  __v: number;
+  _id: string;
+  name: string;
+  email?: string;
+  phone?: string;
+  date: string;
+  time: string;
+  numberOfPeople: number;
+  status?: string;
+  specialRequests?: string;
+}

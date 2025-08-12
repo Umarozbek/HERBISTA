@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import './Reservation.css';
-
+import { Fetch } from '../../middleware/Axios';
+import { toast } from 'react-toastify';
 const Reservation = () => {
   const [form, setForm] = useState({ 
     name: '', 
@@ -8,16 +9,20 @@ const Reservation = () => {
     phone: '',
     date: '', 
     time: '', 
-    people: 1,
+    numberOfPeople: 1,
     specialRequests: '',
     occasion: ''
   });
 
   const handleChange = e => setForm({ ...form, [e.target.name]: e.target.value });
   
-  const handleSubmit = e => {
-    e.preventDefault();
-    alert('Reservation submitted! (Demo only)');
+  const handleSubmit = async () => {
+    try {
+      const response = await Fetch.post("reservations", form);
+      toast.success('Reservation successful!');
+    } catch (error) {
+      console.error('Reservation failed!', error);
+    }
   };
 
   return (
@@ -25,7 +30,7 @@ const Reservation = () => {
       <h2>Book A Table</h2>
       <p className="reservation-subtitle">Make your reservation and enjoy our delicious cuisine</p>
       
-      <form className="reservation-form" onSubmit={handleSubmit}>
+      <div className="reservation-form">
         <div className="form-row">
           <div className="form-group">
             <label htmlFor="name">Full Name *</label>
@@ -110,14 +115,13 @@ const Reservation = () => {
             />
           </div>
         </div>
-
         <div className="form-row">
           <div className="form-group">
-            <label htmlFor="people">Number of People *</label>
+            <label htmlFor="numberOfPeople">Number of People *</label>
             <select 
-              id="people"
-              name="people" 
-              value={form.people} 
+              id="numberOfPeople"
+              name="numberOfPeople" 
+              value={form.numberOfPeople} 
               onChange={handleChange} 
               required
             >
@@ -162,8 +166,8 @@ const Reservation = () => {
           />
         </div>
 
-        <button type="submit" className="submit-btn">Book Table</button>
-      </form>
+        <button onClick={handleSubmit} className="submit-btn">Book Table</button>
+      </div>
     </div>
   );
 };

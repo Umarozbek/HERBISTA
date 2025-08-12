@@ -13,6 +13,7 @@ import Menu from "./pages/Menus";
 import Contacts from "./pages/Contacts";
 import Categories from "./pages/Categories";
 import Orders from "./pages/Orders";
+import Reservation from "./pages/Reservation";
 
 function App() {
   const { isPending, isAuth } = useSelector((state: RootState) => state.user);
@@ -65,6 +66,10 @@ function App() {
             {
               path: "/users",
               element: <Users />,
+            },
+            {
+              path: "/reservation",
+              element: <Reservation />,
             },
             {
               path: "/orders",
