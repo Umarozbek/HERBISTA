@@ -50,11 +50,6 @@ export function AppSidebar() {
       icon: ClipboardList,
     },
     {
-      title: "Contacts",
-      url: "/contacts",
-      icon: MessageCircle,
-    },
-    {
       title: "Users",
       url: "/users",
       icon: Users,
@@ -70,7 +65,7 @@ export function AppSidebar() {
   return (
     <aside
       style={{ transition: "all ease-in-out .3s" }}
-      className={`bg-sky-600 text-white h-screen p-4 ${
+      className={`bg-[#bfa14a] text-white h-screen p-4 ${
         isSidebarOpen ? "w-[300px]" : "w-[60px]"
       }`}
     >
@@ -96,7 +91,7 @@ export function AppSidebar() {
           <li key={index}>
             <Link
               to={item.url}
-              className={`flex items-center gap-2 ${
+              className={`flex items-center gap-2 font-semibold ${
                 !isSidebarOpen ? "justify-center" : ""
               }`}
             >
@@ -116,22 +111,22 @@ export function AppSidebar() {
               }`}
             >
               <LogOut size={18} />
-              <span className={`${isSidebarOpen ? "" : "hidden"}`}>Выйти</span>
+              <span className={`${isSidebarOpen ? "" : "hidden"}`}>Log out</span>
             </li>
           </AlertDialogTrigger>
           <AlertDialogContent className="bg-[#202020] border-none">
             <AlertDialogHeader>
               <AlertDialogTitle className="text-white">
-                Вы точно хотите выйти?
+                Are you sure you want to log out?
               </AlertDialogTitle>
               <AlertDialogDescription>
-                После выхода ваши данные будут утерены
+                After logging out, your data will be lost
               </AlertDialogDescription>
             </AlertDialogHeader>
             <AlertDialogFooter>
-              <AlertDialogCancel>Отменить</AlertDialogCancel>
+              <AlertDialogCancel>Cancel</AlertDialogCancel>
               <AlertDialogAction onClick={handleLogout}>
-                Применить
+                Apply
               </AlertDialogAction>
             </AlertDialogFooter>
           </AlertDialogContent>

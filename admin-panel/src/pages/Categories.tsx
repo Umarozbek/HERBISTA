@@ -42,7 +42,7 @@ const Categories = () => {
   if (loading) {
     return (
       <div className="flex justify-center items-center h-screen">
-        <p className="text-lg font-medium text-sky-400">Loading...</p>
+        <p className="text-lg font-medium text-white">Loading...</p>
       </div>
     )
   }
@@ -59,7 +59,7 @@ const Categories = () => {
   return (
     <div className="p-4 h-screen overflow-y-auto">
     <div className="flex justify-between items-center mb-4 gap-3 flex-wrap">
-      <h1 className="text-2xl font-bold">Categories</h1>
+      <h1 className="text-2xl font-bold text-white">Categories</h1>
       <Sheet>
         <AddCategory />
       </Sheet>
@@ -67,7 +67,7 @@ const Categories = () => {
 
     {categories.length === 0 ? (
       <div className="flex justify-center items-center h-full">
-        <p className="text-lg font-medium ">No Categories found</p> 
+        <p className="text-lg font-medium text-white">No Categories found</p> 
       </div>
     ) : (
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">

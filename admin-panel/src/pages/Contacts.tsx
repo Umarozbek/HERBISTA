@@ -23,8 +23,8 @@ console.log(response)
 
       {contacts.length <= 0 ? (
         <div className="flex justify-center items-center h-40">
-          <p className="text-lg font-medium text-sky-400">
-            Нет ни одного админа
+          <p className="text-lg font-medium text-white">
+            No contacts found
           </p>
         </div>
       ) : (

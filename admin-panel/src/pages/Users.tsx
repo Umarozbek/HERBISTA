@@ -49,8 +49,6 @@ const [toggle, setToggle] = useState(false)
 
    const admins = data.filter (item => item.role === "admin");
    const users = data.filter (item => item.role !== "admin");
-   console.log(users);
-  console.log(admins);
   const handleDeleteUsers = async (id: string) => {
     try {
       (await Fetch.delete(`users/${id}`)).data;
@@ -80,7 +78,7 @@ const [toggle, setToggle] = useState(false)
   return (
     <div className="p-4 h-screen overflow-y-auto">
       <div className="flex justify-between items-center mb-4 gap-3 flex-wrap">
-        <h1 className="text-2xl font-bold">All {toggle ? "admins" : "users"}</h1>
+        <h1 className="text-2xl font-bold text-white">All {toggle ? "admins" : "users"}</h1>
         <Sheet>
           <AddAdmin />
         </Sheet>
@@ -102,11 +100,11 @@ const [toggle, setToggle] = useState(false)
          {toggle ? ( admins?.map((admin: UserTypes) => (
             <div
               key={admin._id}
-              className="bg-[#202020] rounded-lg p-4 flex flex-col gap-3 relative"
+              className="bg-white rounded-lg p-4 flex flex-col gap-3 relative"
             >
               <DropdownMenu>
                 <DropdownMenuTrigger className="absolute top-2 right-2">
-                  <EllipsisVertical size={24} className="text-zinc-400" />
+                  <EllipsisVertical size={24}  />
                 </DropdownMenuTrigger>
                 <DropdownMenuContent className="border-none">
                   <DropdownMenuItem
@@ -131,11 +129,11 @@ const [toggle, setToggle] = useState(false)
           ( users?.map((users: UserTypes) => (
             <div
               key={users._id}
-              className="bg-[#202020] rounded-lg p-4 flex flex-col gap-3 relative"
+              className="bg-[#fff] text-black rounded-lg p-4 flex flex-col gap-3 relative"
             >
               <DropdownMenu>
                 <DropdownMenuTrigger className="absolute top-2 right-2">
-                  <EllipsisVertical size={24} className="text-zinc-400" />
+                  <EllipsisVertical size={24}  />
                 </DropdownMenuTrigger>
                 <DropdownMenuContent className="border-none">
                   <DropdownMenuItem
@@ -146,13 +144,13 @@ const [toggle, setToggle] = useState(false)
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
-              <h2 className="text-lg font-semibold truncate text-white">
+              <h2 className="text-lg font-semibold ">
                 {users.name} 
               </h2>
-              <p className="text-gray-300 text-sm">
+              <p className=" text-sm">
                 Email: {users.email}
               </p>
-              <p className="text-gray-300 text-sm">
+              <p className=" text-sm">
                 Joined: {users.createdAt.slice(0, 10)}
               </p>
             </div>
