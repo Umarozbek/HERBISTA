@@ -31,7 +31,14 @@ exports.createMenuItem = async (req, res) => {
 
 exports.updateMenuItem = async (req, res) => {
   try {
-    const updated = await Menu.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    const updated = await Menu.findByIdAndUpdate(req.params.id, {
+      name: req.body.name,
+      description: req.body.description,
+      price: req.body.price,
+      category: req.body.category,
+      status: req.body.status,
+      image: req.uploadedImage
+    }, { new: true });
     if (!updated) return res.status(404).json({ error: 'Menu item not found' });
     res.json({ data: updated });
   } catch (err) {

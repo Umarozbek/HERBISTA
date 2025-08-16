@@ -21,6 +21,7 @@ export interface MenusTypes {
   quantity: number;
   isAvailable: boolean
   isFeatured: boolean
+  status: string;
 }
 export interface CategoryTypes {
   createdAt: string;

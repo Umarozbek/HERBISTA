@@ -2,7 +2,6 @@ import {
   PanelLeftOpen,
   PanelLeftClose,
   LogOut,
-  MessageCircle,
   SquareMenu,
   Users,
   CopyPlus,

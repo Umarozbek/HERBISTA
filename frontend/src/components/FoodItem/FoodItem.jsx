@@ -2,9 +2,9 @@ import { useState, useEffect } from 'react';
 import './FoodItem.css';
 import { assets } from '../../assets/assets';
 
-const FoodItem = ({ image, name, price, desc, id }) => {
+const FoodItem = ({ image, name, price, desc, id,status }) => {
   const [itemCount, setItemCount] = useState(0);
-
+  
   const addToCart = () => {
     let cart = JSON.parse(localStorage.getItem('cartItems')) || [];
     const foundIndex = cart.findIndex(item => item.id === id);
@@ -45,7 +45,8 @@ const FoodItem = ({ image, name, price, desc, id }) => {
     <div className='food-item'>
       <div className='food-item-img-container'>
         <img className='food-item-image' src={image} alt="" />
-        {itemCount === 0 ? (
+        {
+          status === 'active' && (itemCount === 0 ? (
           <img
             className='add'
             onClick={addToCart}
@@ -59,21 +60,29 @@ const FoodItem = ({ image, name, price, desc, id }) => {
               onClick={removeFromCart} 
               alt="" 
             />
-            <p>{itemCount}</p>
+            <p style={{ color: 'black' }}>{itemCount}</p>
             <img 
               src={assets.add_icon_green} 
               onClick={addToCart} 
               alt="" 
             />
           </div>
-        )}
+        )) 
+        }
+      {
+        status !== 'active' && (
+          <div className="food-item-status">
+            <p style={{ color: status === 'sold out' ? 'white' : 'black', backgroundColor: status === 'sold out' ? '#FF4C24' : 'yellow' }}>{status}</p>
+          </div>
+        )
+      }
       </div>
       <div className="food-item-info">
         <div className="food-item-name-rating">
           <p>{name}</p> <img src={assets.rating_starts} alt="" />
         </div>
         <p className="food-item-desc">{desc}</p>
-        <p className="food-item-price">{price}</p>
+        <p className="food-item-price">{price}$</p>
       </div>
     </div>
   );

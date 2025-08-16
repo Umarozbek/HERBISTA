@@ -20,3 +20,15 @@
     gap: 36px;
     row-gap: 50px;
 }
+
+@media screen and (max-width: 768px) {
+    .food-display-list {
+        grid-template-columns: repeat(2, minmax(280px, 1fr));
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .food-display-list {
+        grid-template-columns: 1fr;
+    }
+}

@@ -5,7 +5,7 @@ const { default: uploadImage } = require('../middleware/uploadImage');
 
 router.get('/', menuController.getAllMenuItems);
 router.post('/',uploadImage, menuController.createMenuItem);
-router.put('/:id', menuController.updateMenuItem);
+router.put('/:id', uploadImage, menuController.updateMenuItem);
 router.delete('/:id', menuController.deleteMenuItem);
 
 module.exports = router; 

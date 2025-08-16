@@ -106,6 +106,7 @@ export function AddCategory() {
             <Input
               name="image"
               type="file"
+              className="file:cursor-pointer file:rounded file:border-0 file:bg-white  pt-1.5 file:text-sm file:text-black hover:file:text-white hover:file:bg-blue-600"
               accept="image/*"
               onChange={handleInputChange}
             />

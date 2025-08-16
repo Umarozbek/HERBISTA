@@ -26,7 +26,7 @@ const [ foods, setFoods] = useState([])
       <div className='food-display-list'>
         {foods.map((item)=>{
           if (category==="All" || category===item.category) {
-            return <FoodItem key={item._id} image={item.image} name={item.name} desc={item.description} price={item.price} id={item._id}/>
+            return <FoodItem key={item._id} status={item.status} image={item.image} name={item.name} desc={item.description} price={item.price} id={item._id}/>
           }
         })} 
        </div>
