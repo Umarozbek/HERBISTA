@@ -10,7 +10,10 @@ const Cart = () => {
   const [showLogin, setShowLogin] = useState(false);
   const [showPayment, setShowPayment] = useState(false);
   const [cartItems, setCartItems] = useState([]); // bu yerda yangi state ochib localStorage dagi cartItems ni oldim
-useEffect(() => {
+  const subTotal = cartItems.reduce((acc, item) => acc + (item.price * item.quantity), 0);
+  const deliveryFee = subTotal === 0 ? 0 : 5;
+  
+  useEffect(() => {
   try {
     const storedCart = localStorage.getItem('cartItems');
     if (storedCart) {
@@ -31,14 +34,6 @@ useEffect(() => {
     }
     setShowPayment(true); // Show payment popup instead of navigating
   };
-  
-  const handleCheckout = () => {
-    if (!token) {
-      setShowLogin(true);
-      return;
-    }
-  };
-  
   
   // bu yerda mahsulotni localStorage dan o'chirdim, id si orqali, quantity kerak emas bu yerga
   const removeFromCart = (id) => {
@@ -65,7 +60,7 @@ useEffect(() => {
     <hr />
     {
       cartItems.length === 0 ? (
-        <div>Your cart is empty</div> 
+        <div style={{ textAlign: 'center', padding: '20px' }}>Your cart is empty</div>
       ) : (
         cartItems.map((item, index) => {
           return (<div key={index}>
@@ -86,11 +81,11 @@ useEffect(() => {
         <div className="cart-total">
           <h2>Cart Totals</h2>
           <div>
-            <div className="cart-total-details"><p>Subtotal</p><p>1</p></div>
+            <div className="cart-total-details"><p>Subtotal</p><p>{subTotal.toLocaleString()} $</p></div>
             <hr />
-            <div className="cart-total-details"><p>Delivery Fee</p><p>1</p></div>
+            <div className="cart-total-details"><p>Delivery Fee</p><p>{deliveryFee} $</p></div>
             <hr />
-            <div className="cart-total-details"><b>Total</b><b>1</b></div>
+            <div className="cart-total-details"><b>Total</b><b>{(subTotal + deliveryFee).toLocaleString()} $</b></div>
           </div>
           <button onClick={handleToggle}>PROCEED TO CHECKOUT</button>
         </div>
@@ -105,7 +100,7 @@ useEffect(() => {
         </div>
       </div>
       {showLogin && <LoginPopup setShowLogin={setShowLogin} />}
-      {showPayment && <PaymentPopup setShowPayment={setShowPayment} items={cartItems} user={data} />}
+      {showPayment && <PaymentPopup setShowPayment={setShowPayment} items={cartItems} user={data} fee={deliveryFee} />}
     </div>
   )
 }

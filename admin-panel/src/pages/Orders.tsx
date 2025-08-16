@@ -31,10 +31,11 @@ const Orders = () => {
                 <div key={_id} className="bg-[#202020] text-white rounded-lg p-4 flex flex-col gap-3 relative">
                     <h1 className="text-sm font-bold">Order #{_id}</h1>
                     <Separator />
-                    <p className="">User: {user.name}</p>
-                    <p className="">Total Price: {total}$</p>
+                    <p>User: {user.name}</p>
+                    <p>Email: {user.email}</p>
+                    <p>Total Price: {total}$</p>
                       <Separator />
-                    <p className="">Items: {items.length}</p>
+                    <p>Items: {items.length}</p>
                     <div>
                       {items.map(item => (
                         <div key={item._id} className="text-gray-400">

@@ -1,5 +1,6 @@
 .my-orders{
-    margin: 50px 0px;
+    padding: 100px 5%;
+    min-height: 48.4vh;
 }
 .my-orders .container{
     display: flex;
@@ -16,7 +17,7 @@
     padding: 10px 20px;
     color: #454545;
     background: #fff;
-    border: 1px solid tomato;
+    border: 1px solid #aaa;
 }
 .my-orders-order img{
     width: 50px;
@@ -50,9 +51,11 @@
 
 
 .my-orders-order-item{
-    display: flex; 
-    flex-direction: column;
-    border-top: #454545 solid 1px;
+    display: flex;  
+    align-items: center;
+    gap: 40px;
+    background: #fff;
+    color: black;
     width: 100%;
-    margin-top: 10px; padding-top: 10px;
+    padding: 10px;
 }
