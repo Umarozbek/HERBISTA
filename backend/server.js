@@ -8,6 +8,7 @@ const orderRoutes = require('./routes/orders');
 const reservationRoutes = require('./routes/reservations');
 const galleryRoutes = require('./routes/gallery');
 const tableRoutes = require('./routes/tables');
+const promoRoutes = require('./routes/promo');
 // Remove multer, path, and direct upload/controller usage
 
 const app = express();
@@ -20,6 +21,7 @@ app.use('/api/users', userRoutes);
 app.use('/api/orders', orderRoutes);
 app.use('/api/reservations', reservationRoutes);
 app.use('/api/gallery', galleryRoutes);
+app.use('/api/promo', promoRoutes);
 app.use('/api/tables', tableRoutes);
 app.use('/api/categories', require('./routes/categories')); // Add categories route
 app.use('/uploads', express.static('uploads'));

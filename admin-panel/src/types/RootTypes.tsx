@@ -32,6 +32,16 @@ export interface CategoryTypes {
   _id: string;
 }
 
+export interface PromoTypes {
+  _id: string;
+  promo: string;
+  used: boolean;
+  user:string;
+  discouunt: number;
+  createdAt: string;  
+
+}
+
 export interface ContactTypes {
   createdAt: string;
   name: string;

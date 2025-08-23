@@ -14,6 +14,7 @@ import Contacts from "./pages/Contacts";
 import Categories from "./pages/Categories";
 import Orders from "./pages/Orders";
 import Reservation from "./pages/Reservation";
+import PromoCode from "./pages/PromoCode";
 
 function App() {
   const { isPending, isAuth } = useSelector((state: RootState) => state.user);
@@ -79,6 +80,11 @@ function App() {
               path:"/contacts",
               element:<Contacts/>
             },
+            {
+              path:"/promocode",
+              element:<PromoCode/>
+            },
+            
             {
               path: "*",
               element: <Error />,

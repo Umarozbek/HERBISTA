@@ -1,4 +1,5 @@
 const Order = require('../models/Order');
+const Promo = require('../models/Promo');
 
 exports.getAllOrders = async (req, res) => {
   console.log('getAllOrders called');
@@ -15,7 +16,16 @@ exports.getAllOrders = async (req, res) => {
 exports.createOrder = async (req, res) => {
   console.log('createOrder called');
   try {
-    const newOrder = new Order(req.body);
+    const {user,items,promo, total} = req.body;
+    if(promo) {
+      const existingPromo = await Promo.findById(promo);
+      existingPromo.used = true;
+      existingPromo.user = user.name;
+      await existingPromo.save();
+    }
+
+    
+    const newOrder = new Order({ user, items, total });
     await newOrder.save();
     console.log('createOrder success');
     res.status(201).json({ data: newOrder });

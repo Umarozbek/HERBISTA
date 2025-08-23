@@ -10,8 +10,7 @@ const {data,isPending, isAuth} = useSelector((state) => state.user);
   const navigate = useNavigate();
   const [showSearch, setShowSearch] = useState(false);
   const searchRef = useRef();
-  // console.log(isAuth);
-  // console.log(data);
+
   
   const logout = () => {
     localStorage.removeItem("token");
@@ -59,7 +58,7 @@ const {data,isPending, isAuth} = useSelector((state) => state.user);
         )}
         <Link to='/cart' className='navbar-search-icon'>
           <img src={assets.basket_icon} alt="" />
-          {/* <div className={getTotalCartAmount() > 0 ? "dot" : ""}></div> */}
+       
         </Link>
         {!isAuth ? <button disabled={isPending}  onClick={() => setShowLogin(true)}>{isPending ? "Loading..." : "Sign in"}</button>
           : <div className='navbar-profile'>

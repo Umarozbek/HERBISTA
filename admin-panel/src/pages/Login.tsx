@@ -73,11 +73,12 @@ export default function Login() {
   };
 
   return (
-    <section className="flex items-center justify-center min-h-screen bg-[#202020]">
-      <Card className="w-full max-w-md shadow-md bg-[#333533] border-none text-white">
+    <section className="flex items-center justify-center min-h-screen bg-[#1a3533]">
+      <Card className="w-full max-w-md shadow-md bg-[#bfa14a] border-none text-white">
+        
         <CardHeader>
           <CardTitle className="text-center text-2xl font-bold">
-            Login
+            Herbista Admin Login
           </CardTitle>
         </CardHeader>
         <CardContent>

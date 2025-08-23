@@ -7,6 +7,7 @@ import {
   CopyPlus,
   ListOrdered,
   ClipboardList,
+  HandHelping,
 } from "lucide-react";
 
 import { Link } from "react-router-dom";
@@ -42,6 +43,11 @@ export function AppSidebar() {
       title: "Orders",
       url: "/orders",
       icon: ListOrdered,
+    },
+    {
+      title: "Promo Code",
+      url: "/promocode",
+      icon: HandHelping,
     },
      {
       title: "Reservation",

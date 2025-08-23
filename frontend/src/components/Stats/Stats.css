@@ -39,9 +39,9 @@
   color: #bfa14a;
 }
 .stats-separator {
-  margin: 40px auto 0 auto;
+  margin: 50px auto 5px auto;
   border: none;
-  height: 3px;
+  height: 7px;
   width: 120px;
   background: linear-gradient(90deg, #bfa14a 0%, #fff4e0 100%);
   border-radius: 2px;

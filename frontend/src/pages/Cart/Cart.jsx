@@ -4,6 +4,8 @@ import LoginPopup from '../../components/LoginPopup/LoginPopup';
 
 import PaymentPopup from '../../pages/PaymentPopup/PaymentPopup';
 import { useSelector } from 'react-redux';
+import { Fetch } from '../../middleware/Axios';
+import { toast } from 'react-toastify';
 
 const Cart = () => {
   const {isAuth, data, isPending, isError } = useSelector(state => state.user);
@@ -13,6 +15,12 @@ const Cart = () => {
   const subTotal = cartItems.reduce((acc, item) => acc + (item.price * item.quantity), 0);
   const deliveryFee = subTotal === 0 ? 0 : 5;
   
+  const [promoCode, setPromoCode] = useState({});
+  
+  const [promoValue, setPromoValue] = useState ("");
+  
+
+   
   useEffect(() => {
   try {
     const storedCart = localStorage.getItem('cartItems');
@@ -26,7 +34,17 @@ const Cart = () => {
   }
 }, []);
 
-  
+
+  const handlePromoSubmit = async () => {
+    try {
+      const response = await Fetch.get(`/promo/${promoValue}`);
+      setPromoCode(response.data);
+      toast.success(`Promo code applied! You get ${response.data.discount}$ off.`);
+    } catch (error) {
+      console.error('Error fetching promo code:', error); 
+      toast.error('Invalid promo code');
+    }
+  }
   const handleToggle = () => {
     if (!isAuth) {
       setShowLogin(true);
@@ -85,7 +103,9 @@ const Cart = () => {
             <hr />
             <div className="cart-total-details"><p>Delivery Fee</p><p>{deliveryFee} $</p></div>
             <hr />
-            <div className="cart-total-details"><b>Total</b><b>{(subTotal + deliveryFee).toLocaleString()} $</b></div>
+            <div className="cart-total-details"><p>Discount</p><p>{promoCode.discount ? `- ${promoCode.discount} $` : '0 $'}</p></div>
+            <hr />
+            <div className="cart-total-details"><b>Total</b><b>{(subTotal + deliveryFee -(promoCode.discount|| 0)).toLocaleString()} $</b></div>
           </div>
           <button onClick={handleToggle}>PROCEED TO CHECKOUT</button>
         </div>
@@ -93,14 +113,14 @@ const Cart = () => {
           <div>
             <p>If you have a promo code, Enter it here</p>
             <div className='cart-promocode-input'>
-              <input type="text" placeholder='promo code'/>
-              <button>Submit</button>
+              <input value={promoValue} onChange={(e)=>setPromoValue(e.target.value)} type="text" placeholder='promo code'/>
+              <button onClick={handlePromoSubmit}>Submit</button>
             </div>
           </div>
         </div>
       </div>
       {showLogin && <LoginPopup setShowLogin={setShowLogin} />}
-      {showPayment && <PaymentPopup setShowPayment={setShowPayment} items={cartItems} user={data} fee={deliveryFee} />}
+      {showPayment && <PaymentPopup  promo={promoCode} setShowPayment={setShowPayment} items={cartItems} user={data} fee={deliveryFee} />}
     </div>
   )
 }

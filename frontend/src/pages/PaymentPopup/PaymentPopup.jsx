@@ -1,17 +1,18 @@
 import { toast } from 'react-toastify';
 import { Fetch } from '../../middleware/Axios';
 import './PaymentPopup.css';
-const PaymentPopup = ({ setShowPayment, items, user, fee }) => {
+const PaymentPopup = ({ setShowPayment, items, user, fee, promo }) => {
 
   const subTotal = items.reduce((total, item) => total + item.price * item.quantity, 0);
-  const totalAmount = subTotal + fee;
+  const totalAmount = subTotal + fee -(promo.discount || 0 );
 
   const handleSubmit = async () => {
     try {
       await Fetch.post('orders', {
         user: user._id,
         items: items,
-        total: totalAmount
+        total: totalAmount,
+        promo: promo._id
       });
      toast.success('Payment successful!');
      localStorage.removeItem('cartItems');
@@ -32,6 +33,7 @@ const PaymentPopup = ({ setShowPayment, items, user, fee }) => {
             <li>User :{user.name}</li>
             <li>SubTotal :{subTotal.toLocaleString()} $</li>
             <li>Delivery Fee :{fee} $</li>
+            <li>Discount Fee : -{promo.discount || 0} $</li>
             <li>Total :{totalAmount.toLocaleString()} $</li>
             <div style={{marginTop: "12px", borderTop: "1px solid #aaa", borderBottom: "1px solid #aaa", padding: "12px 0px"}}>Items:
               {items.map((item, index) => (
