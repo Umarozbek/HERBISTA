@@ -265,7 +265,66 @@ position: relative;
   background: transparent;
   color: #bfa14a;
   font-size: 1rem;
-  width: 180px;
+  width: 350px;
   padding: 6px 12px;
   border-radius: 20px;
+}
+
+.search-item{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 12px;
+}
+
+.navbar-item-status{
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+}
+.navbar-item-status p{
+    padding: 4px 12px;
+    font-size: larger;
+    text-transform: capitalize;
+    border-radius: 12px;
+}
+
+.food-item-counter img{
+    width: 20px;
+}
+@media (max-width: 900px) {
+  .navbar-search-bar {
+    right: 80px;
+    padding: 8px 14px;
+  }
+  .navbar-search-bar input {
+    width: 100%; 
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .navbar-search-bar {
+    top: 50px;
+    right: 40px;
+    padding: 6px 12px;
+  }
+  .navbar-search-bar input {
+    width: 100%;
+    font-size: 0.85rem;
+    padding: 5px 10px;
+  }
+}
+
+@media (max-width: 400px) {
+  .navbar-search-bar {
+    top: 45px;
+    right: 20px;
+    padding: 10px 10px;
+  }
+  .navbar-search-bar input {
+    width: 100%;
+    font-size: 0.8rem;
+    padding: 4px 8px;
+  }
 }

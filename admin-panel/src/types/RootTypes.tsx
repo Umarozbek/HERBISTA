@@ -59,6 +59,7 @@ export interface OrderTypes {
   items: MenusTypes[];
   total: number;
   updatedAt: string;
+  status: string;
   __v: number;
   _id: string;
 }
