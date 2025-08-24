@@ -10,8 +10,7 @@ const Orders = () => {
   const [orders, setOrders] = useState<OrderTypes[]>([])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
-  const [activeOrder, setActiveOrder] = useState<string | null>(null) // ✅ faqat tanlangan order
-
+  const [activeOrder, setActiveOrder] = useState<string | null>(null) 
   useEffect(() => {
     const fetchOrders = async () => {
       try {
@@ -85,7 +84,7 @@ const Orders = () => {
               key={_id}
               className="bg-white text-black rounded-lg p-4 flex flex-col gap-3 relative"
             >
-              <h1 className="text-sm font-bold">Order #{_id}</h1>
+              <h1 className="text-sm font-bold">ID #{_id}</h1>
               <Separator />
               <p>User: {user.name}</p>
               <p>Email: {user.email}</p>

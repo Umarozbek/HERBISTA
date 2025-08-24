@@ -50,9 +50,9 @@ const MyOrders = () => {
                 })}</p>
                 <p>{order.total}.00 $</p>
                 <p>Items: {order.items.length}</p>
-                <p><span>&#x25cf;</span> <b>{order.status}</b></p>
+                <p><span style={{ color: order.status === 'delivering' ? 'blue' : order.status === 'pending' ? 'orange' : order.status === "completed" ? 'limegreen' : 'red', }}>&#x25cf;</span> <b style={{textTransform:"capitalize"}}>{order.status}</b></p>
                    {
-                  toggle === index ? <button onClick={() => setToggle(null)}>Hide Order</button> : <button onClick={() => setToggle(index)}>Track Order</button>
+                  toggle === index ? <button style={{color:"white", backgroundColor: order.status === 'delivering' ? 'blue' : order.status === 'pending' ? 'orange' : order.status === "completed" ? 'limegreen' : 'red' }}  onClick={() => setToggle(null)}>Hide Order</button> : <button style={{color:"white", backgroundColor: order.status === 'delivering' ? 'blue' : order.status === 'pending' ? 'orange' : order.status === "completed" ? 'limegreen' : 'red' }} onClick={() => setToggle(index)}>Track Order</button>
                 }
             </div>
                 <div>

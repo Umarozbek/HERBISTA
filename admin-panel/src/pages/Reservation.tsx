@@ -49,7 +49,6 @@ const Reservation = () => {
             email,
             phone,
             specialRequests,
-            status 
           }) => (
             <div
               key={_id}
@@ -66,8 +65,6 @@ const Reservation = () => {
               <Separator />
               <p>Number of People: {numberOfPeople}</p>
               <p>Special Requests: {specialRequests || "None"}</p>
-              <Separator />
-              <p>Status: <span className="font-semibold capitalize">{status}</span></p>
               <div>
               </div>
               <p className="text-muted-foreground text-end">
