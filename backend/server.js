@@ -13,7 +13,11 @@ const promoRoutes = require('./routes/promo');
 
 const app = express();
 dotenv.config();
-app.use(cors());
+app.use(cors({
+  origin: ["https://admin-herbista.umar.faith", "https://herbista.umar.faith", "http://localhost:5173", "http://localhost:3000"],
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true
+}));
 app.use(express.json());
 
 app.use('/api/menu', menuRoutes);
