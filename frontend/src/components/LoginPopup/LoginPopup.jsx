@@ -27,9 +27,9 @@ const LoginPopup = ({ setShowLogin }) => {
         let new_url = "";
 
         if (currState === "Login") {
-            new_url = "http://localhost:5000/api/users/login";
+            new_url = "https://server.umars.faith/api/users/login";
         } else {
-            new_url = "http://localhost:5000/api/users";
+            new_url = "https://server.umars.faith/api/users";
         }
 
         try {
