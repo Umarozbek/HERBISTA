@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { AdminTypes } from "../types/RootTypes";
+import { UserTypes } from "../types/RootTypes";
 
 interface UserState {
-  data: AdminTypes | {};
+  data: UserTypes | {};
   isPending: boolean;
   error: string;
   isAuth: boolean;
@@ -19,7 +19,7 @@ const UserSlicer = createSlice({
   name: "User",
   initialState,
   reducers: {
-    setUser(state, { payload }: PayloadAction<AdminTypes>) {
+    setUser(state, { payload }: PayloadAction<UserTypes>) {
       state.data = payload;
       state.isPending = false;
       state.isAuth = true;
