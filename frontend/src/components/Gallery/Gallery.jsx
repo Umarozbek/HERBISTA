@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import './Gallery.css';
 
 const images = [
-  { src: '/src/assets/food_1.png', name: 'Classic Greek Salad' },
-  { src: '/src/assets/food_2.png', name: 'Garden Veggie Bowl' },
-  { src: '/src/assets/food_3.png', name: 'Clover Avocado Toast' },
-  { src: '/src/assets/food_4.png', name: 'Chicken Teriyaki Bowl' },
+  { src: '/food_1.png', name: 'Classic Greek Salad' },
+  { src: '/food_2.png', name: 'Garden Veggie Bowl' },
+  { src: '/food_3.png', name: 'Clover Avocado Toast' },
+  { src: '/food_4.png', name: 'Chicken Teriyaki Bowl' },
 ];
 
 const Gallery = () => {
