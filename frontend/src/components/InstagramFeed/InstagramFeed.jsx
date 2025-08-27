@@ -1,13 +1,12 @@
-import React from 'react';
 import './InstagramFeed.css';
 
 const images = [
-  '/src/assets/food_7.png',
-  '/src/assets/food_8.png',
-  '/src/assets/food_9.png',
-  '/src/assets/food_10.png',
-  '/src/assets/food_11.png',
-  '/src/assets/food_12.png',
+  '/food_7.png',
+  '/food_8.png',
+  '/food_9.png',
+  '/food_10.png',
+  '/food_11.png',
+  '/food_12.png',
 ];
 
 const InstagramFeed = () => (
